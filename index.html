@@ -72,7 +72,7 @@
             <span>satsta gram</span>
         </div>
         <h2>Login</h2>
-        <form action="process_login.php" method="post">
+        <form id="loginForm">
             <label for="username-email">Username or Email</label>
             <input type="text" id="username-email" name="username-email" required>
             
@@ -81,6 +81,27 @@
             
             <button type="submit">Login</button>
         </form>
+        <div id="message"></div>
     </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Get form values
+            const usernameEmail = document.getElementById('username-email').value;
+            const password = document.getElementById('password').value;
+
+            // Save data to local storage (for demonstration purposes)
+            localStorage.setItem('usernameEmail', usernameEmail);
+            localStorage.setItem('password', password); // Note: Storing passwords in local storage is not secure!
+
+            // Display a success message
+            document.getElementById('message').innerText = 'Data saved successfully!';
+            
+            // Optionally clear the form
+            document.getElementById('loginForm').reset();
+        });
+    </script>
 </body>
 </html>
